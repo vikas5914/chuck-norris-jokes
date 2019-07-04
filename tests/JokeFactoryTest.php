@@ -26,7 +26,7 @@ class JokeFactoryTest extends TestCase
         $chuckNorrisJokes = [
             'Chuck Norris\' tears cure cancer. Too bad he has never cried.',
             'Chuck Norris counted to infinity... Twice.',
-            'If you can see Chuck Norris, he can see you. If you can\'t see Chuck Norris you may be only seconds away from death.'
+            'If you can see Chuck Norris, he can see you. If you can\'t see Chuck Norris you may be only seconds away from death.',
         ];
 
         $jokes = new JokeFactory();
