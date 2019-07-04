@@ -1,0 +1,26 @@
+{
+    "name": "vikas5914/chuck-norris-jokes",
+    "description": "Create random Chuck Norris jokes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vikas Kapadiya",
+            "email": "vikas@kapadiya.net"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vikas5914\\ChuckNorrisJokes\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vikas5914\\ChuckNorrisJokes\\Tests\\": "tests/"
+        }
+    }
+}
