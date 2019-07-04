@@ -1,5 +1,5 @@
 ## Chuck Norris Jokes
 
-This repository contains code for Chuck Norris Joke package for learning PHP Package Development..
+Doing mpociot's PHP Package Development course.
 
-For more info: https://phppackagedevelopment.com
+This course consists of several videos on how to make a package in PHP. You can get information about the course on the official [website](https://phppackagedevelopment.com).
