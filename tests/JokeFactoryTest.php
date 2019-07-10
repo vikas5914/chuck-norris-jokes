@@ -2,6 +2,10 @@
 
 namespace Vikas5914\ChuckNorrisJokes\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Vikas5914\ChuckNorrisJokes\JokeFactory;
 
@@ -11,27 +15,24 @@ class JokeFactoryTest extends TestCase
     // phpcs:disable PSR1.Methods.CamelCapsMethodName
     public function it_returns_a_random_joke()
     {
-        $jokes = new JokeFactory([
-            'This is a joke',
+        // Create a mock and queue two responses.
+        $mock = new MockHandler([
+            new Response(
+                200,
+                [],
+                '{ "type": "success", "value": { "id": 381, "joke": "Diamonds are not, despite popular belief, carbon. They are, in fact, Chuck Norris fecal matter. This was proven a recently, when scientific analysis revealed what appeared to be Jean-Claude Van Damme bone fragments inside the Hope Diamond.", "categories": [] } }'),
         ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client([
+            'handler' => $handler
+        ]);
+
+        $jokes = new JokeFactory($client);
+
         $joke = $jokes->getRandomJoke();
 
-        $this->assertSame('This is a joke', $joke);
-    }
-
-    /** @test */
-    // phpcs:disable PSR1.Methods.CamelCapsMethodName
-    public function it_returns_a_predefined_joke()
-    {
-        $chuckNorrisJokes = [
-            'Chuck Norris\' tears cure cancer. Too bad he has never cried.',
-            'Chuck Norris counted to infinity... Twice.',
-            'If you can see Chuck Norris, he can see you. If you can\'t see Chuck Norris you may be only seconds away from death.',
-        ];
-
-        $jokes = new JokeFactory();
-        $joke = $jokes->getRandomJoke();
-
-        $this->assertContains($joke, $chuckNorrisJokes);
+        $this->assertSame('Diamonds are not, despite popular belief, carbon. They are, in fact, Chuck Norris fecal matter. This was proven a recently, when scientific analysis revealed what appeared to be Jean-Claude Van Damme bone fragments inside the Hope Diamond.',
+            $joke);
     }
 }
